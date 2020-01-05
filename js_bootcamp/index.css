@@ -1,0 +1,48 @@
+body {
+  background-color: linen;
+
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  font-size: 15px;
+ }
+
+#remove_button {
+     position: absolute;
+     left: 240px;
+     font-size: 17px;
+  }
+#deactivate_button {
+     position: absolute;
+     left: 345px;
+     font-size: 17px;
+  }
+
+#activate_button {
+     position: absolute;
+     left: 210px;
+  }
+
+
+
+#active {
+position: fixed;
+  font-size: 17px;
+  left: 470;
+  width: 530px;
+  border: 1px solid #73AD21
+}
+
+#inactive {
+position: fixed;
+  font-size: 17px;
+  left: 3;
+  width: 450px;
+  border: 1px solid #53AD21
+}
+
+textarea {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 16.5px;
+}

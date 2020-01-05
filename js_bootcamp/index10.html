@@ -1,0 +1,208 @@
+<DOCTYPE html>
+<meta charset=utf8>
+<html>
+<head>
+  <title>Bible Verse</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+    <script src='object_hash.js' type="text/javascript"></script>
+</head>
+<body>
+  <div id='app'></div>
+
+  <script type='text/babel'>
+    function ActiveWords (props) {
+      return (
+        <div>
+          <h3>Правильний вірш з Біблії</h3>
+          <ul>
+            {props.list.map((bible_words) => (
+              <li key={bible_words.index}>
+                <span>{bible_words.chunk_of_words}</span>
+                <button id="remove_button" onClick={() => props.onRemoveWord(bible_words.index)}>Remove</button>
+                <button id="deactivate_button" onClick={() =>
+                props.onToggleWord(bible_words.index,bible_words.chunk_of_words)}>Deactivate</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    function InactiveWords (props) {
+      return (
+        <div>
+          <h3>Неправильний вірш</h3>
+          <ul>
+            {props.list.map((bible_words) => (
+              <li key={bible_words.index}>
+
+                <span>{bible_words.index} {bible_words.chunk_of_words}</span>
+
+                <button id="activate_button" onClick={() => props.onToggleWord(bible_words.index,bible_words.chunk_of_words)}>Activate</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+
+       function makeid(length) {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                 }
+                return result;
+        }
+
+
+
+
+
+    class App extends React.Component {
+      constructor(props) {
+      super(props)
+        let first_text = 'На початку Бог створив Небо та землю.'
+        this.state = {
+           one_word: '',
+           value:  first_text,
+           bible_words: [],
+           text_hash: objectHash.sha1(first_text),
+
+       }
+
+
+
+        this.handleRemoveWord = this.handleRemoveWord.bind(this)
+        this.updateInput = this.updateInput.bind(this)
+        this.handleAddAllWords = this.handleAddAllWords.bind(this)
+        this.handleToggleWord = this.handleToggleWord.bind(this)
+
+
+      } //end constructor
+
+
+      async handleAddAllWords() {
+        let i=0;
+        let BW_array = [];
+        let array2 = [];
+        BW_array = await this.state.value.match(/.*?[\.\)\s]+?/g);
+        while(BW_array.length !== 0) {
+            let randomIndex=Math.floor(Math.random() *BW_array.length);
+            array2.push(BW_array[randomIndex]);
+            BW_array.splice(randomIndex,1);
+        }
+        BW_array = array2;
+
+       // console.log(BW_array);
+
+        do {
+
+        this.setState((currentState) => {
+
+          return {
+            bible_words: currentState.bible_words.concat([{
+            chunk_of_words: BW_array[i],
+            index: i,
+            active: false
+           }])
+          }
+
+        })
+        i++;
+       }
+       while (i <= BW_array.length);
+     }
+
+
+      handleRemoveWord(index) {
+        this.setState((currentState) => {
+          return {
+            bible_words: currentState.bible_words.filter((bible_words) => bible_words.index !== index)
+          }
+        })
+      }
+
+
+      handleToggleWord(index,chunk_of_words) {
+        this.setState((currentState) => {
+          const bible_words = currentState.bible_words.find((bible_word) => bible_word.index === index)
+          return {
+            bible_words: currentState.bible_words.filter((bible_word) => bible_word.index !== index)
+              .concat([{
+                index,
+                chunk_of_words,
+                active: !bible_words.active
+              }])
+          }
+        })
+      }
+
+
+      updateInput(e) {
+      const value = e.target.value
+        this.setState({
+          value: value,
+          text_hash: objectHash.sha1(value)
+        })
+     }
+
+      render() {
+        return (
+          <div>
+
+            <div id="bible_text">
+            <h3>Цитата з Біблії:</h3> the text hash: {this.state.text_hash}
+
+            <br />
+              <textarea rows="7" cols="100" id="bible_text" value={this.state.value}
+                                            onChange={this.updateInput} />
+
+            <br />
+                <button onClick={this.handleAddAllWords}>
+                        Submit
+                </button>
+            <br />
+            </div>
+
+            <div id="clear_button">
+              <button id="clear_button" onClick={() => this.setState({
+                bible_words: []
+              })}>Clear All</button>
+            </div>
+
+
+            <div id ="active">
+            <  ActiveWords
+                list={this.state.bible_words.filter((bible_words) => bible_words.active === true)}
+                onRemoveWord={this.handleRemoveWord}
+                onToggleWord={this.handleToggleWord}
+            />
+            </div>
+            <div id="inactive">
+              <InactiveWords
+                list={this.state.bible_words.filter((bible_words) => bible_words.active === false)}
+                onToggleWord={this.handleToggleWord}
+            />
+            </div>
+
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('app')
+    )
+  </script>
+</body>
+</html>
+

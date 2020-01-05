@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#activeBible{
+
+}
+
+
+#remove_button {
+     position: absolute;
+     left: 140px;
+
+  }
+#deactivate_button {
+     position: absolute;
+     left: 245px;
+
+  }
+
+#activate_button {
+     position: absolute;
+     left: 210px;
+  }
+
+
+#active {
+    position: fixed;
+    left:350px;
+    width:530px;
+}
+
+#inactive {
+    position:fixed;
+    left:3px;
+    width:450px;
+}
+
+
+textarea {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 16.5px;
+}
+
+
+

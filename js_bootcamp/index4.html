@@ -1,0 +1,218 @@
+<DOCTYPE html>
+<meta charset=utf8>
+<html>
+<head>
+  <title>First React App</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+</head>
+<body>
+  <div id='app'></div>
+
+  <script type='text/babel'>
+    function ActiveFriends (props) {
+      return (
+        <div>
+          <h2>Правильний вірш з Біблії</h2>
+          <ul>
+            {props.list.map((friend) => (
+              <li key={friend.index}>
+                <span>{friend.index} {friend.name}</span>
+                <button id="remove_button" onClick={() => props.onRemoveFriend(friend.index)}>Remove</button>
+                <button id="deactivate_button" onClick={() => props.onToggleFriend(friend.index,friend.name)}>Deactivate</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    function InactiveFriends (props) {
+      return (
+        <div>
+          <h2>Неправильний вірш</h2>
+          <ul>
+            {props.list.map((friend) => (
+              <li key={friend.index}>
+                <span>{friend.index} {friend.name}</span>
+                <button onClick={() => props.onToggleFriend(friend.index,friend.name)}>Activate</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+
+        function makeid(length) {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                 }
+                return result;
+             }
+
+
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          friends: [
+            {
+              index: '1fgf111111',
+              name: 'слави',
+              active: false,
+            },
+            {
+              index: '22hkj22222',
+              name: 'і позбавлені',
+              active: false,
+            },
+            {
+              index: '32dfdsf133',
+              name: 'бо',
+              active: false
+            },
+            {
+              index: '111ewee111',
+              name: 'згрішили',
+              active: false,
+            },
+            {
+              index: '32222ryt33',
+              name: 'всі',
+              active: false
+            },
+            {
+              index: '11111vcb11',
+              name: 'Божої',
+              active: false,
+            },
+            {
+              index: '22226rt222',
+              name: 'Рим.3:23',
+              active: false,
+            }
+
+
+          ],
+          input: '',
+        }
+        this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
+        this.updateInput = this.updateInput.bind(this)
+        this.handleAddFriend = this.handleAddFriend.bind(this)
+        this.handleToggleFriend = this.handleToggleFriend.bind(this)
+
+        } //end constructor
+
+
+// classic add function
+//      handleAddFriend() {
+//        this.setState((currentState) => {
+//          return {
+//            friends: currentState.friends.concat([{
+//              index: makeid(10),
+//              name: this.state.input,
+//              active: true,
+//            }]),
+//            input: ''
+//         } //return
+//        })
+//    }
+
+
+      handleAddFriend() {
+        this.setState((currentState) => {
+         if (this.state.input.length > 1) {
+          return {
+            friends: currentState.friends.concat([{
+            index: makeid(10),
+            name: this.state.input,
+            active:true,
+           }]), input:''
+          }
+         } else {alert('Your input is wrong? The name must be more then one symbol.')}
+        })
+      }
+
+
+
+      handleRemoveFriend(index) {
+        this.setState((currentState) => {
+          return {
+            friends: currentState.friends.filter((friend) => friend.index !== index)
+          }
+        })
+      }
+
+
+      handleToggleFriend(index,name) {
+        this.setState((currentState) => {
+          const friend = currentState.friends.find((friend) => friend.index === index)
+          return {
+            friends: currentState.friends.filter((friend) => friend.index !== index)
+              .concat([{
+                index,
+                name,
+                active: !friend.active
+              }])
+          }
+        })
+      }
+
+
+      updateInput(e) {
+        const value = e.target.value
+        this.setState({
+          input: value
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <input
+              type='text'
+              placeholder='new friend'
+              value={this.state.input}
+              onChange={this.updateInput}
+            />
+
+
+            <button onClick={this.handleAddFriend}>
+                    Submit
+            </button>
+            <div id="clear_button">
+              <button id="clear_button" onClick={() => this.setState({
+                friends: []
+              })}>Clear All</button>
+            </div>
+            <ActiveFriends
+              list={this.state.friends.filter((friend) => friend.active === true)}
+              onRemoveFriend={this.handleRemoveFriend}
+              onToggleFriend={this.handleToggleFriend}
+            />
+            <InactiveFriends
+              list={this.state.friends.filter((friend) => friend.active === false)}
+              onToggleFriend={this.handleToggleFriend}
+            />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('app')
+    )
+  </script>
+</body>
+</html>
+
