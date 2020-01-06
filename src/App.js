@@ -14,6 +14,34 @@ const verseName = data.books[0].chapters[0].verses[0].name;
 const wholeVerse = oneVerse + '('+verseName+')';
 //console.log(wholeVerse);
 
+    class Loading extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          text: 'Loading'
+        };
+      }
+      componentDidMount() {
+        const stopper = this.state.text + '...';
+        this.interval = window.setInterval(() => {
+          this.state.text === stopper
+            ? this.setState(() => ({ text: 'Loading' }))
+            : this.setState((prevState) => ({ text: prevState.text + '.' }))
+        }, 300)
+      }
+      componentWillUnmount() {
+        window.clearInterval(this.interval);
+      }
+      render() {
+        return (
+          <p>
+            {this.state.text}
+          </p>
+        )
+      }
+    }
+
+
 function compareHashes(hash1,hash2) {
     //console.log(hash1);
     //console.log(hash2);
@@ -193,7 +221,7 @@ function InactiveWords (props) {
    class App extends Component {
        constructor(props) {
         super(props)
-          this.state = {
+           this.state = {
             bible: data ,
             bookNumber: 0,
             chapterNumber: 0,
@@ -216,9 +244,49 @@ function InactiveWords (props) {
         this.handleRemoveWord = this.handleRemoveWord.bind(this)
         this.handleChangeBCW = this.handleChangeBCW.bind(this)
         this.handleChangeBCVirshi = this.handleChangeBCVirshi.bind(this)
+        this.fetchBible = this.fetchBible.bind(this)
+        this.handleSelectBible = this.handleSelectBible.bind(this)
      }//end constructor
 
 // all handlers heron_encode($data)ta(){
+//
+        componentDidMount() {
+            //this.fetchBible(this.state.current_bible);
+        }
+
+        componentDidUpdate(prevProps, prevState) {
+            console.log('Updating...')
+            if (prevState.activeLanguage !== this.state.current_bible) {
+                console.log('Inside...')
+                //  this.fetchRepos(this.state.currentBible)
+
+            }
+
+        }
+
+
+        fetchBible(bible) {
+            this.setState({
+                loading: true,
+
+            })
+            window.API.fetchBible(bible)
+                .then((bible) => {
+                    this.setState({
+                        loading: false,
+                        bible,
+
+                    })
+                })
+        }
+
+///////////////////////////////////////////////////////////
+        handleSelectBible(bible) {
+            this.setState({
+                currentBible: bible,
+            })
+        }
+
 /////////////////////////////////////////////////////////////////////////////////////
    async handleChangeBCW(bk,ch,vr) {
     await this.setState((currentState) => {
@@ -266,7 +334,7 @@ function InactiveWords (props) {
         let BW_array = [];
         let array2 = [];
         ///(/.*?[.)\s]+?/g)
-        BW_array = await this.state.verse.match(/(\*?.{1,20})(?:\s+|$)/g);
+        BW_array = await this.state.verse.match(/(\*?.{1,35})(?:\s+|$)/g);
         //console.log(BW_array);
         while(BW_array.length !== 0) {
             let randomIndex=Math.floor(Math.random() * BW_array.length);
