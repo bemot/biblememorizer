@@ -62,7 +62,7 @@ function ShowCurentBible(props) {
     //console.log(props.cur_bible);
     return(
         <div>
-            Current bible
+            Current bible:
             <br />
             {props.cur_bible.bible}
         </div>
@@ -140,27 +140,6 @@ function ActiveChapter(props) {
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////
-//////// NOT USING IT NOW ////////
-////////////////////////////////////////////////////
-function ActiveBible (props) {
-    const bibles = [{bible:'Ukrainian Ogienko'},
-                    {bible:'King James'},
-                    {bible:'Rusian Synodal'}];
-     //let alertWhenChanged = () => console.log('from activeBible');
-     return (
-        <div>
-            <DropdownList
-                data = {bibles}
-                valueField='bible'
-                textField= 'bible'
-                defaultValue= {bibles[0].bible}
-                onChange = {props.onChange}
-            />
-        </div>
-    )
-}
-
 
 //////////////////////////////////////////////////////////////////////////////////
 function ActiveWords (props) {
@@ -210,7 +189,7 @@ function InactiveWords (props) {
             bookNumber: 0,
             chapterNumber: 0,
             verseNumber: 0,
-            current_bible : {},
+            current_bible : {bible:'Ukrainian Ogienko'},
             value_main: '',
             verse: '',
               //bible_words: [],
@@ -236,32 +215,22 @@ function InactiveWords (props) {
        //
 
        componentDidMount () {
-        console.log('BM did mount...')
-
-        console.log(this.state.current_bible)
-           //this.setState.current_bible=this.state.current_bible;
-       }
-
-       componentDidUpdate(prevProps,prevState,nextProps,nextState) {
-
-        console.log('BM did..');
-        console.log('prevProps ', prevProps);
-        console.log('prevState ', prevState);
-        console.log('nextProps ', nextProps);
-        console.log('nextState ', nextState);
-        this.setState.current_bible=prevProps.value;
-    // Typical usage (don't forget to compare props):
-    //if (this.props.userIiD !== prevProps.userID) {
-    // this.fetchData(this.props.userID);
         }
 
-       shouldComponentUpdate(prevProps){
-               console.log('shouldComponentUpdate');
-               if (this.state.current_bible !== prevProps.value) {
-                   return true}
-                else return false
-               }
+    async   shouldComponentUpdate(prevProps){
+        //console.log(prevProps.bible);
+        // console.log('shouldComponentUpdate');
+       }
 
+    async   componentWillReceiveProps(prevProps){
+         console.log(prevProps.bible);
+         console.log('shouldComponentUpdate');
+      if (this.state.current_bible !== prevProps) {
+       await  this.setState({
+             current_bible: prevProps.bible,
+          })
+      }
+    }
 
 
 /////////////////////////////////////////////////////////////////////////////////////
