@@ -5,9 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import VmOg from './VmOg';
-import VmKj from './VmKj';
-import VmRs from './VmRs';
+import VerseMemorize from './BibleMemorize';
 import { DropdownList } from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,19 +18,19 @@ import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 const Home = () => (
-    <div className = "UkrainianOgienko"> <VmOg /></div>
+    <div className = "UkrainianOgienko"> <VerseMemorize og /></div>
 )
 
 const KingJames = () => (
-    <div className = "KingJames"> <VmKj /> </div>
+    <div className = "KingJames"> <VerseMemorize kj /> </div>
 )
 
 const UkrainianOgienko = () => (
-    <div className = "UkrainianOgienko"> <VmOg /></div>
+    <div className = "UkrainianOgienko"> <VerseMemorize og /></div>
 )
 
 const RussianSynodal = () => (
-    <div className ="RussianSynodal"> <VmRs /></div>
+    <div className ="RussianSynodal"> <VerseMemorize rs /></div>
 )
 
 
