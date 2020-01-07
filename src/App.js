@@ -18,19 +18,19 @@ import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 const Home = () => (
-    <div className = "UkrainianOgienko"> <VerseMemorize value={{bible:'og'}}/></div>
+    <div className = "UkrainianOgienko"> <VerseMemorize value={{bible:'Ukrainian Ogienko'}}/></div>
 )
 
 const KingJames = () => (
-    <div className = "KingJames"> <VerseMemorize value={{bible:'kj'}}/> </div>
+    <div className = "KingJames"> <VerseMemorize value={{bible:'King James'}}/> </div>
 )
 
 const UkrainianOgienko = () => (
-    <div className = "UkrainianOgienko"> <VerseMemorize value={{bible:'og'}} /></div>
+    <div className = "UkrainianOgienko"> <VerseMemorize value={{bible:'Ukrainian Ogienko'}} /></div>
 )
 
 const RussianSynodal = () => (
-    <div className ="RussianSynodal"> <VerseMemorize value={{bible:'rs'}}/></div>
+    <div className ="RussianSynodal"> <VerseMemorize value={{bible:'Russian Synodal'}}/></div>
 )
 
 
@@ -38,26 +38,25 @@ class App extends Component {
     constructor(props) {
     super(props)
      this.state = {
-            current_bible: 'og' ,
+            current_bible: 'King James' ,
           }
 
         /////////all binds here
 
     }///end constructor
 
-    // componentDidMount () {
-    //    console.log('did mount...')
+    //   componentDidMount () {
+    //      console.log('did mount App...')
     // }
 
     //componentDidUpdate(prevProps) {
-    //    console.log('did update...')
-
+    //    console.log('did update App...')
+    // }
   // Typical usage (don't forget to compare props):
     //if (this.props.userIiD !== prevProps.userID) {
     // this.fetchData(this.props.userID);
     // }
     //}
-
 
         render() {
         return (
@@ -69,8 +68,8 @@ class App extends Component {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/ukrainiaogienko">Ukrainian Ogienko</Nav.Link>
-        <Nav.Link href="/kingjames">King James Bible</Nav.Link>
+        <Nav.Link href="/ukrainianogienko">Ukrainian Ogienko</Nav.Link>
+        <Nav.Link href="/kingjames">King James</Nav.Link>
         <Nav.Link href="/russiansynodal">Russian Synodal</Nav.Link>
 
     </Nav>
@@ -78,9 +77,9 @@ class App extends Component {
   </Navbar.Collapse>
             </Navbar>
          <Switch>
-             <Route exact path="/" component={UkrainianOgienko}/>
+             <Route exact path="/" component={Home}/>
+             <Route path="/ukrainianogienko" component={UkrainianOgienko}/>
              <Route path="/kingjames" component={KingJames}/>
-             <Route path="/ukrainiaogienko" component={UkrainianOgienko}/>
              <Route path="/russiansynodal" component={RussianSynodal}/>
          </Switch>
 

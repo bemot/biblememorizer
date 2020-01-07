@@ -6,13 +6,7 @@ import { Multiselect } from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-const book = 0;
-const chapter = 0;
-const verse = 0;
-const oneVerse = data.bibles[0].books[book].chapters[chapter].verses[verse].text;
-const verseName = data.bibles[0].books[0].chapters[0].verses[0].name;
-const wholeVerse = oneVerse + '('+verseName+')';
-//console.log(wholeVerse);
+
 
 function compareHashes(hash1,hash2) {
     //console.log(hash1);
@@ -59,6 +53,18 @@ function ActiveBook(props) {
 
             />
 
+        </div>
+
+    )
+}
+
+function ShowCurentBible(props) {
+    //console.log(props.cur_bible);
+    return(
+        <div>
+            Current bible
+            <br />
+            {props.cur_bible.bible}
         </div>
 
     )
@@ -138,17 +144,17 @@ function ActiveChapter(props) {
 //////// NOT USING IT NOW ////////
 ////////////////////////////////////////////////////
 function ActiveBible (props) {
-    const bibles = [{bible:'og',bname:'Ukrainian Ogienko'},
-                    {bible:'kj',bname:'King James'},
-                    {bible:'rs',bname:'Rusian Synodal'}];
+    const bibles = [{bible:'Ukrainian Ogienko'},
+                    {bible:'King James'},
+                    {bible:'Rusian Synodal'}];
      //let alertWhenChanged = () => console.log('from activeBible');
      return (
         <div>
             <DropdownList
                 data = {bibles}
-                valueField='bname'
-                textField= 'bname'
-                defaultValue= {bibles[0].bname}
+                valueField='bible'
+                textField= 'bible'
+                defaultValue= {bibles[0].bible}
                 onChange = {props.onChange}
             />
         </div>
@@ -200,16 +206,16 @@ function InactiveWords (props) {
        constructor(props) {
         super(props)
           this.state = {
-            bible: data ,
+              //bible: data ,
             bookNumber: 0,
             chapterNumber: 0,
             verseNumber: 0,
-            current_bible : {bible:'og',bname:'Ukrainian Ogienko'},
+            current_bible : {},
             value_main: '',
-            verse: wholeVerse,
-            bible_words: [],
-            text_hash: objectHash.sha1(wholeVerse),
-            main_hash: objectHash.sha1(''),
+            verse: '',
+              //bible_words: [],
+              //text_hash: objectHash.sha1(wholeVerse),
+              //main_hash: objectHash.sha1(''),
         }
         //binds here
         //console.log(this.state.current_bible)
@@ -228,20 +234,33 @@ function InactiveWords (props) {
 
        // all handlers here
        //
-    componentDidMount () {
-        console.log('did mount...')
 
-        }
+       componentDidMount () {
+        console.log('BM did mount...')
 
-    componentDidUpdate(prevProps,prevState) {
-        console.log(prevProps)
-        console.log(prevState)
+        console.log(this.state.current_bible)
+           //this.setState.current_bible=this.state.current_bible;
+       }
 
-  // Typical usage (don't forget to compare props):
+       componentDidUpdate(prevProps,prevState,nextProps,nextState) {
+
+        console.log('BM did..');
+        console.log('prevProps ', prevProps);
+        console.log('prevState ', prevState);
+        console.log('nextProps ', nextProps);
+        console.log('nextState ', nextState);
+        this.setState.current_bible=prevProps.value;
+    // Typical usage (don't forget to compare props):
     //if (this.props.userIiD !== prevProps.userID) {
     // this.fetchData(this.props.userID);
-    // }
-}
+        }
+
+       shouldComponentUpdate(prevProps){
+               console.log('shouldComponentUpdate');
+               if (this.state.current_bible !== prevProps.value) {
+                   return true}
+                else return false
+               }
 
 
 
@@ -406,110 +425,10 @@ async   updateInput_text(e) {
            return (
 
          <div>
-<div className="container">
-  <div className="row">
-
-    <div className="col-sm-4">
-
-     <div><ActiveBook
-                    bible={this.state.bible}
-                    onChange={(value) => {
-                        this.handleChangeBCW(value.book_id,0,0)}
-                    }
-              /></div>
-    </div>
-
-    <div className="col-sm-4">
-        <div><ActiveChapter
-              bible={this.state.bible}
-              book_num={this.state.bookNumber}
-              onChange={(value) => {
-                        this.handleChangeBCW(this.state.bookNumber,value.chapter_id,0)}
-              }
-          />
-         </div>
-    </div>
-
-    <div className="col-sm-4">
-       <div><ActiveVerse
-              bible={this.state.bible}
-              book_num={this.state.bookNumber}
-              chap_num={this.state.chapterNumber}
-              onChange={(value) => {
-                  //console.log(value)
-                this.handleChangeBCVirshi(this.state.bookNumber,this.state.chapterNumber,value)}
-              }
-          />
-      </div>
-    </div>
-
-
-    <div className="container">
-        <div className="form-group">
-                <textarea className="form-control rounded-10" id="bible_text" rows="4"
-            value={this.state.verse}
-                  onChange={this.updateInput_text}
-              />
-             <div id="label_texthash">  {this.state.text_hash} </div>
-
-
-         <div className="btn-group">
-           <div>
-                 <button  type="button" className="btn btn-primary btn-sm"
-                                            onClick={this.handleAddAllWords}>
-                       /divide the verse/
-                  </button>
-            </div>
-           <div>
-               <button type="button" className="btn btn-primary btn-sm"
-                            onClick={() => this.setState({
-                bible_words: [],
-                value_main: '',
-                main_hash: objectHash.sha1(''),})}>
-                            /clear/
-                </button>
-            </div>
-           </div>
-
-
-          </div>
-
-
-        <div className="form-group">
-                <textarea className="form-control rounded-10" id="main_text" rows="4"
-                    value ={this.state.value_main}
-                        onChange={this.updateInput_main}
-                />
-             <div id="label_mainhash">  {this.state.main_hash} </div>
-
-
-      </div>
-  </div>
-
-            <div>
-              <InactiveWords
-                list={this.state.bible_words.filter((bible_words) => bible_words.active === false)}
-                onToggleWord={this.handleToggleWord_to_active}
-
-            />
-            </div>
-
-
-
-            <div>
-              <ActiveWords
-                list={this.state.bible_words.filter((bible_words) => bible_words.active === true)}
-                onRemoveWord={this.handleRemoveWord}
-                onToggleWord={this.handleToggleWord_from_active}
-
-            />
-            </div>
-
+        <div className="container">
+            <ShowCurentBible cur_bible = {this.state.current_bible}/>
         </div>
-
-         </div>
-
-     </div>
+      </div>
 
        );
     }
