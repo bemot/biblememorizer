@@ -12,9 +12,9 @@ function filterData(cur_bible)
 {
     var index = 1;
     var b = {};
-    if (cur_bible.name == "King James" ) {index = 0};
-    if (cur_bible.name == "Ukrainian Ogienko" ) {index = 1};
-    if (cur_bible.name == "Russian Synodal" ) {index = 2};
+    if (cur_bible.name === "King James" ) {index = 0};
+    if (cur_bible.name === "Ukrainian Ogienko" ) {index = 1};
+    if (cur_bible.name === "Russian Synodal" ) {index = 2};
         b = data.bibles[index];
     //   console.log('cur_bible name '+ cur_bible.name)
     //    console.log(b);
@@ -44,7 +44,7 @@ function ActiveBook(props) {
 
     // var book_id = 0
     //var book_name =''
-    console.log(props.bible);
+    //console.log(props.bible);
     for (var i=0; i < props.bible.books.length;i++) {
         knygy.push(
             {book_id: i,
@@ -53,7 +53,7 @@ function ActiveBook(props) {
         )
     }
 
-    // console.log(chaps)
+    //console.log(chaps)
     return(
         <div>
             <DropdownList
@@ -90,8 +90,8 @@ function ActiveChapter(props) {
 
     var rosdily = []
 
-    console.log(props.bible);
-    console.log(props.book_num)
+    //console.log(props.bible);
+    //console.log(props.book_num)
     for (var i=0; i< props.bible.books[props.book_num].chapters.length;i++) {
         rosdily.push(
             {chapter_id: i,
@@ -100,7 +100,7 @@ function ActiveChapter(props) {
         )
     }
 
-    // console.log(chaps)
+    //console.log(chaps)
     return(
         <div>
             <DropdownList
@@ -119,14 +119,14 @@ function ActiveChapter(props) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-//
+
  function ActiveVerse(props) {
 
      var virshi = [];
 
-     console.log(props.bible);
-     console.log(props.chap_num)
-     console.log(props.value)
+     //console.log(props.bible);
+     //console.log(props.chap_num)
+     //console.log(props.value)
      for (var i=0; i < props.bible.books[props.book_num].chapters[props.chap_num].verses.length;i++) {
         virshi.push(
             {verse_id: i+1,
@@ -173,7 +173,7 @@ function ActiveWords (props) {
       )
 } //end ActiveWords
 
-
+///////////////////////////////////////////////////////////////////
 function InactiveWords (props) {
       return (
           <div className="container">
@@ -233,12 +233,12 @@ function InactiveWords (props) {
 
     async   shouldComponentUpdate(prevProps){
         //console.log(prevProps.bible);
-        // console.log('shouldComponentUpdate');
+        //console.log('shouldComponentUpdate');
        }
 
     async   componentWillReceiveProps(prevProps){
         //console.log(prevProps.bible);
-        // console.log('shouldComponentUpdate');
+        //console.log('shouldComponentUpdate');
       if (this.state.current_bible !== prevProps) {
        await  this.setState({
            current_bible: prevProps.bible,
@@ -304,7 +304,7 @@ function InactiveWords (props) {
         BW_array = array2;
       //console.log(BW_array);
 
-       // console.log(BW_array);
+       //console.log(BW_array);
 
         do {
 
@@ -437,7 +437,7 @@ async   updateInput_text(e) {
               book_num={this.state.bookNumber}
               chap_num={this.state.chapterNumber}
               onChange={(value) => {
-                  //console.log(value)
+              //console.log(value)
                 this.handleChangeBCVirshi(this.state.bookNumber,this.state.chapterNumber,value)}
               }
           />
@@ -483,8 +483,8 @@ async   updateInput_text(e) {
              <div id="label_mainhash">  {this.state.main_hash} </div>
 
 
-      </div>
-  </div>
+             </div>
+         </div>
 
             <div>
               <InactiveWords

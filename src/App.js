@@ -60,14 +60,12 @@ this.handleWhatBible = this.handleWhatBible.bind(this);
 ///////////////////////////////////////////
   render() {
    return (
-   <div className="container">
-     <div className="col-sm-12">
-         <ActiveBible onChange={(value) => {this.handleWhatBible(value)}}
+   <div>
+            <ActiveBible onChange={(value) => {this.handleWhatBible(value)}}
          />
 
      <VerseMemorize bible = {this.state.current_bible} />
     </div>
-   </div>
         )
     }
 }

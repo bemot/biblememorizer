@@ -11,3 +11,70 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  background-color: #2874a6;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#activeVerse {
+}
+#activeChapter {
+}
+
+#activeBook {
+}
+
+#remove_button {
+
+  }
+#deactivate_button {
+
+  }
+
+#activate_button {
+  }
+
+#divide_button {
+   }
+
+#clear_button {
+}
+
+#active {
+}
+
+#inactive {
+
+}
+
+
+
+#bible_text {
+	 visibility: '';
+     font-size:16.5;
+     color:#1F618D ;
+     font-weight: bold;
+}
+
+#main_text {
+    font-size: 16.5px;
+     color:#1F618D ;
+     font-weight:bold;
+}
+
+#label_texthash{
+	font-size: 11px;
+}
+
+#label_mainhash{
+	font-size: 11px;
+	}
+
+
