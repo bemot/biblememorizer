@@ -12,17 +12,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap';
 
 function ActiveBible (props) {
-    const bibles = [{bible:'Ukrainian Ogienko'},
-                    {bible:'King James'},
-                    {bible:'Rusian Synodal'}];
+    const bibles = [{name:'Ukrainian Ogienko'},
+                    {name:'King James'},
+                    {name:'Russian Synodal'}];
      //let alertWhenChanged = () => console.log('from activeBible');
      return (
         <div>
             <DropdownList
                 data = {bibles}
-                valueField='bible'
-                textField= 'bible'
-                defaultValue= {bibles[0].bible}
+                valueField='name'
+                textField= 'name'
+                defaultValue= {bibles[0].name}
                 onChange = {props.onChange}
             />
         </div>
@@ -34,7 +34,7 @@ class App extends Component {
     constructor(props) {
     super(props)
      this.state = {
-            current_bible: {bible:'King James'} ,
+            current_bible: {name:'King James'} ,
           }
 
         /////////all binds here
@@ -60,13 +60,14 @@ this.handleWhatBible = this.handleWhatBible.bind(this);
 ///////////////////////////////////////////
   render() {
    return (
-     <div className="container">
-
+   <div className="container">
+     <div className="col-sm-12">
          <ActiveBible onChange={(value) => {this.handleWhatBible(value)}}
          />
 
      <VerseMemorize bible = {this.state.current_bible} />
-      </div>
+    </div>
+   </div>
         )
     }
 }

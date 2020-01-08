@@ -6,7 +6,20 @@ import { Multiselect } from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import _ from 'lodash';
 
+function filterData(cur_bible)
+{
+    var index = 1;
+    var b = {};
+    if (cur_bible.name == "King James" ) {index = 0};
+    if (cur_bible.name == "Ukrainian Ogienko" ) {index = 1};
+    if (cur_bible.name == "Russian Synodal" ) {index = 2};
+        b = data.bibles[index];
+    //   console.log('cur_bible name '+ cur_bible.name)
+    //    console.log(b);
+    return b;
+  }
 
 function compareHashes(hash1,hash2) {
     //console.log(hash1);
@@ -60,11 +73,12 @@ function ActiveBook(props) {
 
 function ShowCurentBible(props) {
     //console.log(props.cur_bible);
+    filterData(props.cur_bible);
     return(
         <div>
             Current bible:
             <br />
-            {props.cur_bible.bible}
+            {props.cur_bible.name}
         </div>
 
     )
@@ -113,7 +127,7 @@ function ActiveChapter(props) {
      console.log(props.bible);
      console.log(props.chap_num)
      console.log(props.value)
-     for (var i=0; i < props.bible.bibles.books[props.book_num].chapters[props.chap_num].verses.length;i++) {
+     for (var i=0; i < props.bible.books[props.book_num].chapters[props.chap_num].verses.length;i++) {
         virshi.push(
             {verse_id: i+1,
              verse_name: props.bible.books[props.book_num].chapters[props.chap_num].verses[i].name
@@ -185,16 +199,16 @@ function InactiveWords (props) {
        constructor(props) {
         super(props)
           this.state = {
-              //bible: data ,
+            bible: data.bibles[1],
             bookNumber: 0,
             chapterNumber: 0,
             verseNumber: 0,
-            current_bible : {bible:'Ukrainian Ogienko'},
+            current_bible : {name:'Ukrainian Ogienko'},
             value_main: '',
-            verse: '',
-              //bible_words: [],
-              //text_hash: objectHash.sha1(wholeVerse),
-              //main_hash: objectHash.sha1(''),
+            verse: 'На початку Бог створив Небо та землю.',
+            bible_words: [],
+            text_hash: objectHash.sha1(''),
+            main_hash: objectHash.sha1(''),
         }
         //binds here
         //console.log(this.state.current_bible)
@@ -206,7 +220,7 @@ function InactiveWords (props) {
         this.handleToggleWord_from_active = this.handleToggleWord_from_active.bind(this)
         this.handleRemoveWord = this.handleRemoveWord.bind(this)
         this.handleChangeBCW = this.handleChangeBCW.bind(this)
-        this.handleChangeBCVirshi = this.handleChangeBCVirshi.bind(this)
+        this. handleChangeBCVirshi = this.handleChangeBCVirshi.bind(this)
 
 
      }//end constructor
@@ -223,11 +237,12 @@ function InactiveWords (props) {
        }
 
     async   componentWillReceiveProps(prevProps){
-         console.log(prevProps.bible);
-         console.log('shouldComponentUpdate');
+        //console.log(prevProps.bible);
+        // console.log('shouldComponentUpdate');
       if (this.state.current_bible !== prevProps) {
        await  this.setState({
-             current_bible: prevProps.bible,
+           current_bible: prevProps.bible,
+           bible: filterData(prevProps.bible)
           })
       }
     }
@@ -241,8 +256,8 @@ function InactiveWords (props) {
               bookNumber: bk,
               chapterNumber: ch,
               verseNumber: vr,
-              verse: data.books[bk].chapters[ch].verses[vr].text,
-              text_hash: objectHash.sha1(data.books[bk].chapters[ch].verses[vr].text),
+              verse: this.state.bible.books[bk].chapters[ch].verses[vr].text,
+              text_hash: objectHash.sha1(this.state.bible.books[bk].chapters[ch].verses[vr].text),
 
 
           }
@@ -256,7 +271,7 @@ function InactiveWords (props) {
       //console.log(value);
       for (; i < value.length;i++) {
           //console.log(i)
-          virsh += data.books[bk].chapters[ch].verses[value[i].verse_id-1].text + ' '
+          virsh += this.state.bible.books[bk].chapters[ch].verses[value[i].verse_id-1].text + ' '
           //console.log(virsh)
         }
       await this.setState((currentState) => {
@@ -395,9 +410,104 @@ async   updateInput_text(e) {
 
          <div>
         <div className="container">
-            <ShowCurentBible cur_bible = {this.state.current_bible}/>
-        </div>
+        <div className="col-sm-4">
+
+     <div><ActiveBook
+             bible={this.state.bible}
+                    onChange={(value) => {
+                        this.handleChangeBCW(value.book_id,0,0)}
+                    }
+              /></div>
+    </div>
+
+    <div className="col-sm-4">
+        <div><ActiveChapter
+              bible={this.state.bible}
+              book_num={this.state.bookNumber}
+              onChange={(value) => {
+                        this.handleChangeBCW(this.state.bookNumber,value.chapter_id,0)}
+              }
+          />
+         </div>
+    </div>
+
+    <div className="col-sm-4">
+       <div><ActiveVerse
+              bible={this.state.bible}
+              book_num={this.state.bookNumber}
+              chap_num={this.state.chapterNumber}
+              onChange={(value) => {
+                  //console.log(value)
+                this.handleChangeBCVirshi(this.state.bookNumber,this.state.chapterNumber,value)}
+              }
+          />
       </div>
+    </div>
+
+    <div className="container">
+        <div className="form-group">
+                <textarea className="form-control rounded-10" id="bible_text" rows="4"
+            value={this.state.verse}
+                  onChange={this.updateInput_text}
+              />
+             <div id="label_texthash">  {this.state.text_hash} </div>
+
+
+         <div className="btn-group">
+           <div>
+                 <button  type="button" className="btn btn-primary btn-sm"
+                                            onClick={this.handleAddAllWords}>
+                       /divide the verse/
+                  </button>
+            </div>
+           <div>
+               <button type="button" className="btn btn-primary btn-sm"
+                            onClick={() => this.setState({
+                bible_words: [],
+                value_main: '',
+                main_hash: objectHash.sha1(''),})}>
+                            /clear/
+                </button>
+            </div>
+           </div>
+
+
+          </div>
+
+
+        <div className="form-group">
+                <textarea className="form-control rounded-10" id="main_text" rows="4"
+                    value ={this.state.value_main}
+                        onChange={this.updateInput_main}
+                />
+             <div id="label_mainhash">  {this.state.main_hash} </div>
+
+
+      </div>
+  </div>
+
+            <div>
+              <InactiveWords
+                list={this.state.bible_words.filter((bible_words) => bible_words.active === false)}
+                onToggleWord={this.handleToggleWord_to_active}
+
+            />
+            </div>
+
+
+
+            <div>
+              <ActiveWords
+                list={this.state.bible_words.filter((bible_words) => bible_words.active === true)}
+                onRemoveWord={this.handleRemoveWord}
+                onToggleWord={this.handleToggleWord_from_active}
+
+            />
+            </div>
+
+        </div>
+
+    </div>
 
        );
     }
