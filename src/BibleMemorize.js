@@ -158,7 +158,7 @@ function ActiveChapter(props) {
 //////////////////////////////////////////////////////////////////////////////////
 function ActiveWords (props) {
       return (
-          <div className="container">
+          <div>
               <h4>Right Bible text</h4>
           <ul>
             {props.list.map((bible_words) => (
@@ -176,7 +176,7 @@ function ActiveWords (props) {
 ///////////////////////////////////////////////////////////////////
 function InactiveWords (props) {
       return (
-          <div className="container">
+          <div>
               <h4>Wrong Bible text</h4>
           <ul>
             {props.list.map((bible_words) => (
@@ -408,9 +408,10 @@ async   updateInput_text(e) {
        render() {
            return (
 
-         <div>
-        <div className="container">
-        <div className="col-sm-4">
+    <div>
+       <div className='container'>
+            <div className='row'>
+               <div className="col-sm-4">
 
      <div><ActiveBook
              bible={this.state.bible}
@@ -441,11 +442,10 @@ async   updateInput_text(e) {
                 this.handleChangeBCVirshi(this.state.bookNumber,this.state.chapterNumber,value)}
               }
           />
-      </div>
+     </div>
     </div>
 
-    <div className="container">
-        <div className="form-group">
+      <div className='row'>
                 <textarea className="form-control rounded-10" id="bible_text" rows="4"
             value={this.state.verse}
                   onChange={this.updateInput_text}
@@ -459,8 +459,8 @@ async   updateInput_text(e) {
                                             onClick={this.handleAddAllWords}>
                        /divide the verse/
                   </button>
-            </div>
-           <div>
+         </div>
+         <div>
                <button type="button" className="btn btn-primary btn-sm"
                             onClick={() => this.setState({
                 bible_words: [],
@@ -471,20 +471,15 @@ async   updateInput_text(e) {
             </div>
            </div>
 
-
-          </div>
-
-
-        <div className="form-group">
-                <textarea className="form-control rounded-10" id="main_text" rows="4"
-                    value ={this.state.value_main}
-                        onChange={this.updateInput_main}
-                />
-             <div id="label_mainhash">  {this.state.main_hash} </div>
+            <textarea className="form-control rounded-10" id="main_text" rows="4"
+                        value ={this.state.value_main}
+                            onChange={this.updateInput_main}
+                    />
+                 <div id="label_mainhash">  {this.state.main_hash} </div>
 
 
              </div>
-         </div>
+     </div>
 
             <div>
               <InactiveWords
@@ -494,8 +489,6 @@ async   updateInput_text(e) {
             />
             </div>
 
-
-
             <div>
               <ActiveWords
                 list={this.state.bible_words.filter((bible_words) => bible_words.active === true)}
@@ -503,13 +496,11 @@ async   updateInput_text(e) {
                 onToggleWord={this.handleToggleWord_from_active}
 
             />
+               </div>
             </div>
-
         </div>
 
-    </div>
-
-       );
+      );
     }
 
 }
