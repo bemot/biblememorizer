@@ -152,11 +152,11 @@ function ActiveWords(props) {
   return (
     <div>
       <h4>Right Bible text</h4>
-      <ul>
+      <ul className="word-list">
         {props.list.map((bible_words) => (
           <li key={bible_words.index}>
             <button
-              id="deactivate_button"
+              id={bible_words.index}
               onClick={() =>
                 props.onToggleWord(
                   bible_words.index,
@@ -178,7 +178,7 @@ function InactiveWords(props) {
   return (
     <div>
       <h4>Wrong Bible text</h4>
-      <ul>
+      <ul className="word-list">
         {props.list.map((bible_words) => (
           <li key={bible_words.index}>
             <button
@@ -232,7 +232,7 @@ class VerseMemorize extends Component {
   // all handlers here
   //
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   async shouldComponentUpdate(prevProps) {
     //console.log(prevProps.bible);

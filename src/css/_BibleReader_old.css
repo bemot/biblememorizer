@@ -1,0 +1,63 @@
+.container {
+  font-family: "Arial", sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.select {
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.verse {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+}
+
+.verse-name {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ... existing styles ... */
+
+.chapter-text {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.verse-inline {
+  display: inline;
+}
+
+/* ... existing styles ... */
+
+.verse-number {
+  color: #888;
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+/* ... existing styles ... */
+
+.verse-block {
+  display: block;
+  margin-bottom: 8px;
+}
