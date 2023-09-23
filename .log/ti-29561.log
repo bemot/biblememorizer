@@ -1,0 +1,41 @@
+[20:33:35.852] Global cache location '/home/sasha/.cache/typescript/4.5', safe file path '/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typingSafeList.json', types map path /home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typesMap.json
+[20:33:35.853] Processing cache location '/home/sasha/.cache/typescript/4.5'
+[20:33:35.853] Trying to find '/home/sasha/.cache/typescript/4.5/package.json'...
+[20:33:35.853] Finished processing cache location '/home/sasha/.cache/typescript/4.5'
+[20:33:35.854] Process id: 29568
+[20:33:35.854] NPM location: /home/sasha/.nvm/versions/node/v16.9.1/bin/npm (explicit '--npmLocation' not  provided)
+[20:33:35.854] validateDefaultNpmLocation: false
+[20:33:35.854] Npm config file: /home/sasha/.cache/typescript/4.5/package.json
+[20:33:35.854] Updating types-registry npm package...
+[20:33:35.854] Exec: /home/sasha/.nvm/versions/node/v16.9.1/bin/npm install --ignore-scripts types-registry@latest
+[20:33:35.863]     Failed. stdout:
+    stderr:
+    /bin/sh: 1: /home/sasha/.nvm/versions/node/v16.9.1/bin/npm: not found
+    
+[20:33:35.864] Updated types-registry npm package
+[20:33:35.864] Types registry file '/home/sasha/.cache/typescript/4.5/node_modules/types-registry/index.json' does not exist
+[20:33:36.957] Got install request {"projectName":"/dev/null/inferredProject1*","fileNames":["/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es5.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2016.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.dom.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.dom.iterable.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.scripthost.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.core.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.collection.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.generator.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.promise.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2016.array.include.d.ts","/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/lib.es2016.full.d.ts","/home/sasha/WORK/Projects/REACT/biblememorizer/src/BibleMemorize.js","/home/sasha/WORK/Projects/REACT/biblememorizer/src/App.js","/home/sasha/WORK/Projects/REACT/biblememorizer/src/index.js"],"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"],"projectRootPath":"/home/sasha/WORK/Projects/REACT/biblememorizer/src","kind":"discover"}
+[20:33:36.992] Loaded safelist from types map file '/home/sasha/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/typesMap.json'
+[20:33:36.993] Explicitly included types: []
+[20:33:36.994] Inferred typings from unresolved imports: ["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"]
+[20:33:36.994] Result: {"cachedTypingPaths":[],"newTypingNames":["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"],"filesToWatch":["/home/sasha/WORK/Projects/REACT/biblememorizer/src/bower_components","/home/sasha/WORK/Projects/REACT/biblememorizer/src/node_modules"]}
+[20:33:36.994] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"],"filesToWatch":["/home/sasha/WORK/Projects/REACT/biblememorizer/src/bower_components","/home/sasha/WORK/Projects/REACT/biblememorizer/src/node_modules"]}
+[20:33:36.994] DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/bower_components
+[20:33:36.994] DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[20:33:36.996] Elapsed:: 1.4733830001205206ms DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[20:33:36.996] DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/node_modules
+[20:33:36.996] DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[20:33:36.996] Elapsed:: 0.1112579982727766ms DirectoryWatcher:: Added:: WatchInfo: /home/sasha/WORK/Projects/REACT/biblememorizer/src/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[20:33:36.996] Installing typings ["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"]
+[20:33:36.997] 'bootstrap':: Entry for package 'bootstrap' does not exist in local types registry - skipping...
+[20:33:36.997] 'lodash':: Entry for package 'lodash' does not exist in local types registry - skipping...
+[20:33:36.997] 'object-hash':: Entry for package 'object-hash' does not exist in local types registry - skipping...
+[20:33:36.997] 'react':: Entry for package 'react' does not exist in local types registry - skipping...
+[20:33:36.997] 'react-bootstrap':: Entry for package 'react-bootstrap' does not exist in local types registry - skipping...
+[20:33:36.997] 'react-dom':: Entry for package 'react-dom' does not exist in local types registry - skipping...
+[20:33:36.997] 'react-router-dom':: Entry for package 'react-router-dom' does not exist in local types registry - skipping...
+[20:33:36.997] 'react-widgets':: Entry for package 'react-widgets' does not exist in local types registry - skipping...
+[20:33:36.997] All typings are known to be missing or invalid - no need to install more typings
+[20:33:36.997] Sending response:
+    {"projectName":"/dev/null/inferredProject1*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typings":[],"unresolvedImports":["bootstrap","lodash","object-hash","react","react-bootstrap","react-dom","react-router-dom","react-widgets"],"kind":"action::set"}
+[20:33:36.998] Response has been sent.

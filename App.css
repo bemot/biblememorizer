@@ -1,1 +1,96 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #011627; /* Nightfly background color */
+  color: #d6deeb; /* General text color */
+}
+.selector-container {
+  position: sticky;
+  top: 0;
+  background-color: #011627; /* Nightfly background color */
+  z-index: 100; /* Ensures it stays above other content */
+  padding: 10px 0; /* Some padding for aesthetics */
+  border-bottom: 1px solid #5f7e97; /* A bluish border at the bottom */
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+select {
+  background-color: #1b2b34; /* Slightly lighter than background */
+  color: #d6deeb; /* General text color */
+  border: 1px solid #5f7e97; /* A bluish border */
+  margin: 5px;
+  padding: 5px;
+}
+
+.chapter-text {
+  padding: 20px;
+  background-color: #1b2b34; /* Container background */
+  border-radius: 5px;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+.verse-block {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.verse-number {
+  color: #82aaff; /* Highlight color for verse numbers */
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+/* Hover effects for better user experience */
+select:hover {
+  background-color: #2c3b4a; /* Slightly darker on hover */
+}
+
+/* Button styles */
+button {
+  background-color: #1b2b34; /* Button background */
+  color: #d6deeb; /* Text color */
+  border: 1px solid #5f7e97; /* Bluish border */
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2c3b4a; /* Darker on hover */
+}
+
+/* ... existing styles ... */
+
+.chapter-text {
+  background-color: #2c3b4a;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.verse-inline {
+  display: inline;
+}
+
+/* ... existing styles ... */
+
+.verse-number {
+  color: #888;
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+/* ... existing styles ... */
+
+.verse-block {
+  display: block;
+  margin-bottom: 8px;
+}
